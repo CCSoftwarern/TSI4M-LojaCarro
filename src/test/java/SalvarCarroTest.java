@@ -36,7 +36,7 @@ public class SalvarCarroTest {
         Carro carro = new Carro();
         carro.setId(1L);
         carro.setModelo("Civic");
-        carro.setAno(20245);
+        carro.setAno(2024);
 
         Mockito.when(carroService.save(any(Carro.class)))
                 .thenReturn(carro);
