@@ -48,7 +48,7 @@ public class PesquisarCarroPorIdTest {
         mockMvc.perform(get("/carro/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.modelo").value("HB20"))
+                .andExpect(jsonPath("$.modelo").value("HB202"))
                 .andExpect(jsonPath("$.ano").value(2022));
     }
 
