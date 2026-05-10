@@ -1,8 +1,5 @@
 name: Java CI
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   push:
     branches:
@@ -14,11 +11,9 @@ on:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout do código
         uses: actions/checkout@v4
 
@@ -33,4 +28,4 @@ jobs:
         run: chmod +x mvnw
 
       - name: Rodar testes
-        run: mvn test
+        run: ./mvnw test  # <--- Alterado de 'mvn' para './mvnw'
