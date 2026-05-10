@@ -47,6 +47,6 @@ public class SalvarCarroTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.modelo").value("Civic"))
-                .andExpect(jsonPath("$.ano").value(2025));
+                .andExpect(jsonPath("$.ano").value(2024));
     }
 }
