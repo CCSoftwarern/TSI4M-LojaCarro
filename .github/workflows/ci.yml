@@ -12,20 +12,34 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Configurar Java
         uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'temurin'
+          distribution: 'microsoft'
           cache: maven
 
       - name: Permissão para Maven Wrapper
         run: chmod +x mvnw
 
       - name: Rodar testes
-        run: ./mvnw test  # <--- Alterado de 'mvn' para './mvnw'
+        run: ./mvnw test
+
+      - name: Merge dev -> main
+        if: success() && github.ref == 'refs/heads/dev'
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: dev
+          target_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
