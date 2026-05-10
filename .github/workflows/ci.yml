@@ -1,0 +1,33 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Permissão para Maven Wrapper
+        run: chmod +x mvnw
+
+      - name: Rodar testes
+        run: mvn test
