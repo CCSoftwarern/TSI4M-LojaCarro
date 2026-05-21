@@ -44,6 +44,7 @@ public class CarroIntegracaoTest {
         System.out.println("ID salvo no banco: " + idCarro);
     }
 
+
     @Test
     @Order(2)
     void deveBuscarCarroNoBancoReal() {
@@ -99,7 +100,7 @@ public class CarroIntegracaoTest {
         assertFalse(carro.isPresent());
     }
 
-        // Teste falhando propositalmente no modelo
+
         @Test
         void deveFalharModeloDiferente() {
             try {
@@ -118,14 +119,14 @@ public class CarroIntegracaoTest {
 
                 System.out.println("Exceção tratada com sucesso: " + e.getMessage());
 
-                // teste continua passando
+
                 assertTrue(true);
             }
 
 
         }
 
-        // Teste falhando no ano
+
         @Test
         void deveFalharAnoDiferente() {
 
@@ -151,7 +152,7 @@ public class CarroIntegracaoTest {
             assertTrue(true);
         }
 
-        // Teste falhando ao buscar ID inexistente
+
         @Test
         void deveFalharAoBuscarIdInexistente() {
 
@@ -172,7 +173,7 @@ public class CarroIntegracaoTest {
             }
         }
 
-        // falhando quantidade de registros
+
         @Test
         void deveFalharQuantidadeCarros() {
             try {
@@ -192,7 +193,7 @@ public class CarroIntegracaoTest {
 
         }
 
-        // 5 - Teste falhando ao deletar
+
         @Test
         void deveFalharAoDeletar() {
 
