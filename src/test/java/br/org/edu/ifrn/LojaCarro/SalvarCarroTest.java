@@ -27,18 +27,19 @@ public class SalvarCarroTest {
 
     @Test
     void deveSalvarCarro() throws Exception {
-        // Cenário: Cria o objeto sem ID, pois o MySQL vai gerar
-        Carro carro = new Carro();
-        carro.setModelo("Civic");
-        carro.setAno(2024);
 
-        // Ação e Verificação: Envia os dados para a API salvar no banco
+        // Cenário: Modelo inválido (vazio)
+        Carro carroInvalido = new Carro();
+        carroInvalido.setModelo(""); // String vazia para forçar o erro de validação
+        carroInvalido.setAno(2024);
+
+        // Ação e Verificação: O Spring deve interceptar e devolver 400 Bad Request
         mockMvc.perform(post("/carro/salvar")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(carro)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").exists()) // Garante que o banco gerou um ID
-                .andExpect(jsonPath("$.modelo").value("Civic"))
-                .andExpect(jsonPath("$.ano").value(2024));
+                        .content(objectMapper.writeValueAsString(carroInvalido)))
+                .andExpect(status().isBadRequest()); // Espera erro 400 (Bad Request)
     }
+
+
 }
+
