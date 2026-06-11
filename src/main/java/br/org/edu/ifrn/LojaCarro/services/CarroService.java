@@ -19,23 +19,22 @@ public class CarroService {
         return carroRepository.save(c);
     }
 
-    // Novo metodo para deletar por ID
+
     public void deleteById(Long id) {
         carroRepository.deleteById(id);
     }
 
-    // Novo metodo para pesquisar por ID
+
     public Optional<Carro> findById(Long id) {
         return carroRepository.findById(id);
     }
 
-    // Novo metodo para listar todos os carros
     public List<Carro> findAll() {
         return carroRepository.findAll();
     }
 
-    // Metodo para atualizar (usa o save existente, mas pode ser renomeado se preferir)
+
     public Carro update(Carro c) {
-        return carroRepository.save(c);  // Retorna o carro salvo para feedback
+        return carroRepository.save(c);
     }
 }
